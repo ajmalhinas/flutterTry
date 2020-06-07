@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 40.0,
-      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      padding: EdgeInsets.symmetric(horizontal: 150.0),
       margin: EdgeInsets.only(top: 15.0),
       child: RaisedButton(
         onPressed: emailController.text == "" || passwordController.text == "" ? null : () {
