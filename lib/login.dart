@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -31,7 +33,10 @@ class _LoginPageState extends State<LoginPage> {
             headerSection(),
             textSection(),
             buttonSection1(),
-            buttonSection(),
+            //buttonSection(),
+            newUserText(),
+            regUrl(),
+
 
           ],
         ),
@@ -155,4 +160,38 @@ class _LoginPageState extends State<LoginPage> {
               fontWeight: FontWeight.bold)),
     );
   }
+
+  Container newUserText() {
+    return Container(
+      margin: EdgeInsets.only(top: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      child: Text("Are you a new user ?",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 15.0,
+          fontWeight: FontWeight.normal)
+        )
+        );
+  }
+
+  InkWell regUrl(){
+    return InkWell(
+
+            child: Text("Click here to register",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15.0,
+                backgroundColor: Colors.redAccent),
+            ),
+
+            onTap: () async {
+              if (await canLaunch("https://flutter.dev")) {
+                await launch("https://flutter.io");
+              }
+            }
+        );
+
+  }
+
+
 }
