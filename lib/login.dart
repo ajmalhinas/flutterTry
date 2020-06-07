@@ -30,8 +30,9 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             headerSection(),
             textSection(),
-            buttonSection(),
             buttonSection1(),
+            buttonSection(),
+
           ],
         ),
       ),
