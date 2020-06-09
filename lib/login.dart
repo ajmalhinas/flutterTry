@@ -32,8 +32,8 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             headerSection(),
             textSection(),
-            buttonSection1(),
-            //buttonSection(),
+            //buttonSection1(),
+            buttonSection("Login"),
             newUserText(),
             regUrl(),
 
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Container buttonSection() {
+  Container buttonSection(String text) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 40.0,
@@ -84,8 +84,8 @@ class _LoginPageState extends State<LoginPage> {
           signIn(emailController.text, passwordController.text);
         },
         elevation: 0.0,
-        color: Colors.purple,
-        child: Text("Register", style: TextStyle(color: Colors.white70)),
+        color: Colors.blue[800],
+        child: Text("$text", style: TextStyle(color: Colors.white70)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       ),
     );
@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 40.0,
-      padding: EdgeInsets.symmetric(horizontal: 150.0),
+      padding: EdgeInsets.symmetric(horizontal: 145.0),
       margin: EdgeInsets.only(top: 15.0),
       child: RaisedButton(
         onPressed: emailController.text == "" || passwordController.text == "" ? null : () {
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
           signIn(emailController.text, passwordController.text);
         },
         elevation: 0.0,
-        color: Colors.purple,
+        color: Colors.blue[900],
         child: Text("Login", style: TextStyle(color: Colors.white70)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       ),
@@ -190,8 +190,5 @@ class _LoginPageState extends State<LoginPage> {
               }
             }
         );
-
   }
-
-
 }
