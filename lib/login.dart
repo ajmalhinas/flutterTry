@@ -51,9 +51,10 @@ class _LoginPageState extends State<LoginPage> {
       'password': pass
     };
     var jsonResponse = null;
-    var response = await http.post("YOUR_BASE_URL", body: data);
+    var response = await http.post("http://192.168.1.5:8080/bonita/loginservice?username=favio.riviera&password=bpm", body: data);
+    var reaction = await http.get("http://192.168.1.5:8080/bonita/AP/identity/group?p=0&c=100");
     if(response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
+      jsonResponse = json.decode(reaction.body);
       if(jsonResponse != null) {
         setState(() {
           _isLoading = false;
@@ -126,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(color: Colors.white70),
             decoration: InputDecoration(
               icon: Icon(Icons.email, color: Colors.white70),
-              hintText: "Email",
+              hintText: "UserName",
               border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white70)),
               hintStyle: TextStyle(color: Colors.white70),
             ),
