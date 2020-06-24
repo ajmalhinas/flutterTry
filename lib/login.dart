@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/main.dart';
+import 'package:my_app/second.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -57,24 +58,25 @@ class _LoginPageState extends State<LoginPage> {
     //printing some important value to get some understanding
     print('my responce code is ${response.statusCode}');
     print('my responce code is ${response.headers}');
-    print('my responce body is ${response.body}');
+    //print('my responce body is ${response.body}');
     print('my reaction code is ${reaction.statusCode}');
 
     if(response.statusCode == 200) {
       //jsonResponse = json.decode(reaction.body);
-      if(jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-        sharedPreferences.setString("token", jsonResponse['token']);
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MainPage()), (Route<dynamic> route) => false);
-      }
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Secondpage()), (Route<dynamic> route) => false);
+//      if(jsonResponse != null) {
+//        setState(() {
+//          _isLoading = false;
+//        });
+//        sharedPreferences.setString("token", jsonResponse['token']);
+//        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MainPage()), (Route<dynamic> route) => false);
+//      }
     }
     else {
       setState(() {
         _isLoading = false;
       });
-      print(response.body);
+      print('Check username or Password');
     }
   }
 
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(horizontal: 15.0),
       margin: EdgeInsets.only(top: 15.0),
       child: RaisedButton(
-        onPressed: emailController.text == "" || passwordController.text == "" ? null : () {
+        onPressed: emailController.text == "" && passwordController.text == "" ? null : () {
           setState(() {
             _isLoading = true;
           });
