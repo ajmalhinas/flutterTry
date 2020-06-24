@@ -46,15 +46,22 @@ class _LoginPageState extends State<LoginPage> {
 
   signIn(String email, pass) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {
-      'email': email,
-      'password': pass
-    };
+//    Map data = {
+//      'email': email,
+//      'password': pass
+//    };
     var jsonResponse = null;
-    var response = await http.post("http://192.168.1.5:8080/bonita/loginservice?username=favio.riviera&password=bpm", body: data);
-    var reaction = await http.get("http://192.168.1.5:8080/bonita/AP/identity/group?p=0&c=100");
+    var response = await http.post("http://192.168.1.5:8080/bonita/loginservice?username=favio.riviera&password=bpm&redirect=false&redirectUrl=");
+    var reaction = await http.get("http://192.168.1.5:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+
+    //printing some important value to get some understanding
+    print('my responce code is ${response.statusCode}');
+    print('my responce code is ${response.headers}');
+    print('my responce body is ${response.body}');
+    print('my reaction code is ${reaction.statusCode}');
+
     if(response.statusCode == 200) {
-      jsonResponse = json.decode(reaction.body);
+      //jsonResponse = json.decode(reaction.body);
       if(jsonResponse != null) {
         setState(() {
           _isLoading = false;
