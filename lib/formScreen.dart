@@ -32,7 +32,9 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildRequestPurpose(){
-    return null;
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Purpose for permit'),
+    );
   }
 
   Widget _buildStartDate(){
@@ -53,7 +55,11 @@ class _FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Permit Request Form"),),
+      appBar: AppBar(title: Text("Permit Request Application"),
+      centerTitle: true, actions: <Widget>[
+        IconButton(icon: Icon(Icons.supervised_user_circle), onPressed: null)
+        ],
+      ),
       body: Container(
         margin: EdgeInsets.all(24),
         child: Form(
@@ -62,7 +68,8 @@ class _FormScreenState extends State<FormScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _buildName(),
-//            _buildRequestPurpose(),
+//            SizedBox(height: 5.0,),
+            _buildRequestPurpose(),
 //            _buildStartDate(),
 //            _buildStartTime(),
 //            _buildEndDate(),

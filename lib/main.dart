@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'second.dart';
+import 'formScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +39,7 @@ class _MainPageState extends State<MainPage> {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("token") == null) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+          MaterialPageRoute(builder: (BuildContext context) => FormScreen()),
           (Route<dynamic> route) => false);
     }
   }
@@ -56,7 +57,7 @@ class _MainPageState extends State<MainPage> {
               sharedPreferences.commit();
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()),
+                      builder: (BuildContext context) => FormScreen()),
                   (Route<dynamic> route) => false);
             },
             child: Text("Log Out", style: TextStyle(color: Colors.white)),
