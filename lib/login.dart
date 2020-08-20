@@ -52,8 +52,8 @@ class _LoginPageState extends State<LoginPage> {
 //      'password': pass
 //    };
     var jsonResponse = null;
-    var response = await http.post("http://192.168.1.5:8080/bonita/loginservice?username=favio.riviera&password=bpm&redirect=false&redirectUrl=");
-    var reaction = await http.get("http://192.168.1.5:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+    var response = await http.post("http://192.168.0.54:8080/bonita/loginservice?username=favio.riviera&password=bpm&redirect=false&redirectUrl=");
+    var reaction = await http.get("http://192.168.0.54:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
 
     //printing some important value to get some understanding
     print('my responce code is ${response.statusCode}');
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
 
             style: TextStyle(color: Colors.white70),
             decoration: InputDecoration(
-              icon: Icon(Icons.email, color: Colors.white70),
+              icon: Icon(Icons.account_box, color: Colors.white70),
               hintText: "UserName",
               border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white70)),
               hintStyle: TextStyle(color: Colors.white70),
