@@ -7,6 +7,7 @@ import 'package:my_app/main.dart';
 import 'package:my_app/second.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:my_app/formScreen.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
             //buttonSection1(),
             buttonSection("Login"),
             newUserText(),
-            regUrl(),
+            //regUrl(),
 
 
           ],
@@ -47,23 +48,27 @@ class _LoginPageState extends State<LoginPage> {
 
   signIn(String email, pass) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//    Map data = {
-//      'email': email,
-//      'password': pass
-//    };
+    Map data = {
+      'email': email,
+      'password': pass
+    };
     var jsonResponse = null;
-    var response = await http.post("http://192.168.0.54:8080/bonita/loginservice?username=favio.riviera&password=bpm&redirect=false&redirectUrl=");
-    var reaction = await http.get("http://192.168.0.54:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+    var response = await http.post("http://192.168.43.41:8080/bonita/loginservice?username=${email}&password=${pass}&redirect=false&redirectUrl=");
+    var reaction = await http.get("http://192.168.43.41:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+
 
     //printing some important value to get some understanding
     print('my responce code is ${response.statusCode}');
     print('my responce code is ${response.headers}');
+    print('my userName is ${email}');
     //print('my responce body is ${response.body}');
     print('my reaction code is ${reaction.statusCode}');
 
+
+
     if(response.statusCode == 200) {
       //jsonResponse = json.decode(reaction.body);
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Secondpage()), (Route<dynamic> route) => false);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => FormScreen()), (Route<dynamic> route) => false);
 //      if(jsonResponse != null) {
 //        setState(() {
 //          _isLoading = false;
@@ -76,9 +81,10 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = false;
       });
-      print('Check username or Password');
+      print("Check User name or password");
+      }
     }
-  }
+
 
   Container buttonSection(String text) {
     return Container(
@@ -136,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(color: Colors.white70),
             decoration: InputDecoration(
               icon: Icon(Icons.account_box, color: Colors.white70),
-              hintText: "UserName",
+              hintText: "User Name",
               border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white70)),
               hintStyle: TextStyle(color: Colors.white70),
             ),
@@ -175,11 +181,11 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      child: Text("Are you a new user ?",
+      child: Text("Check User name or Password",
         style: TextStyle(
           color: Colors.white,
           fontSize: 15.0,
-          fontWeight: FontWeight.normal)
+          fontWeight: FontWeight.bold)
         )
         );
   }

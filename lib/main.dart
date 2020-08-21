@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage> {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("token") == null) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => FormScreen()),
+          MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
           (Route<dynamic> route) => false);
     }
   }
@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
               sharedPreferences.commit();
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (BuildContext context) => FormScreen()),
+                      builder: (BuildContext context) => LoginPage()),
                   (Route<dynamic> route) => false);
             },
             child: Text("Log Out", style: TextStyle(color: Colors.white)),
