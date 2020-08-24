@@ -54,8 +54,12 @@ class _LoginPageState extends State<LoginPage> {
     };
     var jsonResponse = null;
 
-    var response = await http.post("http://192.168.8.102:8080/bonita/loginservice?username=${email}&password=${pass}&redirect=false&redirectUrl=");
-//    var reaction = await http.get("http://192.168.1.104:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+
+
+    var host="146.148.92.64";
+
+    var response = await http.post("http://"+host+":8080/bonita/loginservice?username=${email}&password=${pass}&redirect=false&redirectUrl=");
+    var reaction = await http.get("http://"+host+":8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
 
 
     //printing some important value to get some understanding
