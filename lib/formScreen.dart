@@ -51,8 +51,8 @@ class _FormScreenState extends State<FormScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           children: <Widget>[
-            Text("Permit Required Date:             "),
-            Text("${selectedDate.toLocal()}".split(' ')[0]),
+            Text("Permit Required Date:      ",style: TextStyle(fontSize: 16),),
+            Text("${selectedDate.toLocal()}".split(' ')[0],style: TextStyle(fontSize: 16),),
             IconButton(icon: Icon(Icons.date_range), onPressed: ()=> _selectDate(context)),
           ],
         )
@@ -65,19 +65,38 @@ class _FormScreenState extends State<FormScreen> {
         child: Row(
 
           children: <Widget>[
-            Text("Starting Time -                           "),
-            Text("${selectedTime.hour}: ${selectedTime.minute} "),
+            Text("Starting Time -                           ",style: TextStyle(fontSize: 16),),
+            Text("${selectedTime.hour}: ${selectedTime.minute} ",style: TextStyle(fontSize: 16),),
             IconButton(icon: Icon(Icons.access_time), onPressed: ()=> _selectTime(context)),
           ],
         )
     );
   }
   Widget _buildEndDate(){
-    return null;
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Row(
+          children: <Widget>[
+            Text("Estimated Ending Date:     ",style: TextStyle(fontSize: 16),),
+            Text("${selectedDate.toLocal()}".split(' ')[0]),
+            IconButton(icon: Icon(Icons.date_range), onPressed: ()=> _selectDate(context)),
+          ],
+        )
+    );
   }
 
   Widget _buildEndTime(){
-    return null;
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Row(
+
+          children: <Widget>[
+            Text("Closing Time -                           ", style: TextStyle(fontSize: 16 ),),
+            Text("${selectedTime.hour}: ${selectedTime.minute} ", style: TextStyle(fontSize: 16),),
+            IconButton(icon: Icon(Icons.access_time), onPressed: ()=> _selectTime(context)),
+          ],
+        )
+    );
   }
 
   DateTime selectedDate = DateTime.now();
@@ -136,8 +155,8 @@ class _FormScreenState extends State<FormScreen> {
                 _buildRequestPurpose(),
             _buildStartDate(),
             _buildStartTime(),
-//            _buildEndDate(),
-//            _buildEndTime(),
+            _buildEndDate(),
+            _buildEndTime(),
               SizedBox(height: 10,),
                 SizedBox(height: 0,),
 

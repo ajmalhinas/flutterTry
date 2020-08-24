@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_app/main.dart';
 import 'package:my_app/second.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             textSection(),
             //buttonSection1(),
             buttonSection("Login"),
-            newUserText(),
+            _newUserText(),
             //regUrl(),
 
 
@@ -53,8 +53,9 @@ class _LoginPageState extends State<LoginPage> {
       'password': pass
     };
     var jsonResponse = null;
-    var response = await http.post("http://192.168.43.41:8080/bonita/loginservice?username=${email}&password=${pass}&redirect=false&redirectUrl=");
-    var reaction = await http.get("http://192.168.43.41:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
+
+    var response = await http.post("http://192.168.8.102:8080/bonita/loginservice?username=${email}&password=${pass}&redirect=false&redirectUrl=");
+//    var reaction = await http.get("http://192.168.1.104:8080/bonita/API/bdm/businessData/com.company.model5.request/findByIds?ids=1,2");
 
 
     //printing some important value to get some understanding
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
     print('my responce code is ${response.headers}');
     print('my userName is ${email}');
     //print('my responce body is ${response.body}');
-    print('my reaction code is ${reaction.statusCode}');
+//    print('my reaction code is ${reaction.statusCode}');
 
 
 
@@ -177,17 +178,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container newUserText() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0),
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      child: Text("Check User name or Password",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 15.0,
-          fontWeight: FontWeight.bold)
-        )
-        );
+  Widget _newUserText() {
+    if (_isLoading == false) {
+      return Container(
+        margin: EdgeInsets.only(top: 10.0),
+        child: Text(""),
+      );
+    }
+    else {
+      return Container(
+          margin: EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          child: Text("Check User name or Password",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold)
+          )
+      );
+    }
   }
 
   InkWell regUrl(){
